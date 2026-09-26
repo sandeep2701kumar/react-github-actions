@@ -33,6 +33,6 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: react-artifacts
-                path: /dist
+                path: dist/
                 retention-days: 7
 
