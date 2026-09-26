@@ -10,12 +10,18 @@ jobs:
         steps:
             - name: checkout
               uses: actions/checkout@v4
+            
+            - name: setup node
+              uses: actions/setup-node@v4
               with:
                 node-version: 24
-                cache: npm
+                cache: "npm"
 
             - name: install dependency
               run: npm ci
+
+            - name: run ESLint in code
+              run: npm run lint
 
             - name: make react build
               run: npm run build
