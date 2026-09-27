@@ -6,6 +6,7 @@ function App() {
     <>
       <h1>Vite + React</h1>
       <h2>Github actions testing purpose</h2>
+      <h3>Vercel deployment testing purpose</h3>
     </>
   )
 }
