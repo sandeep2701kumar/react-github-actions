@@ -46,10 +46,9 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-          VERCELTOKENGITHUB: ${{ secrets.VERCELTOKENGITHUB }}
-          VERCELPROJECTID: ${{ secrets.VERCELPROJECTID }}
           VERCELORGID: ${{ secrets.VERCELORGID }}
-          
+          VERCELPROJECTID: ${{ secrets.VERCELPROJECTID }}
+
         steps:
             - name: checkout
               uses: actions/checkout@v4
@@ -73,8 +72,15 @@ jobs:
                 path: dist/
                 retention-days: 7
 
+    Deploy-job:
+        needs: [lint-job,test-job,build-job]
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+            
             - name: Install vercel cli
               run: npm install -g vercel
 
             - name: deployment on vercel
-              run: vercel deploy dist --prod --yes --token="${{ secrets.VERCELTOKENGITHUB}}"
+              run: vercel --prod --yes --token="${{ secrets.VERCELTOKENGITHUB}}"
